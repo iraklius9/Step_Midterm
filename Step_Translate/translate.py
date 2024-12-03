@@ -25,9 +25,19 @@ def load_json_lexicon():
         return {}
     with open(JSON_LEXICON_FILE, "r", encoding="utf-8") as f:
         try:
-            return json.load(f)
+            lexicon = json.load(f)
+            return {
+                src_lang.lower(): {
+                    tgt_lang.lower(): {
+                        word.lower(): translation.lower()
+                        for word, translation in translations.items()
+                    }
+                    for tgt_lang, translations in target_langs.items()
+                }
+                for src_lang, target_langs in lexicon.items()
+            }
         except json.JSONDecodeError as e:
-            print(f"Error reading {JSON_LEXICON_FILE}: {e}.")
+            print(f"Error reading {JSON_LEXICON_FILE}: {e}.\n")
             return {}
 
 
@@ -37,7 +47,7 @@ def save_json_lexicon(lexicon):
 
 
 def translate_word_json(lexicon, source_lang, target_lang, word):
-    return lexicon.get(source_lang, {}).get(target_lang, {}).get(word, None)
+    return lexicon.get(source_lang.lower(), {}).get(target_lang.lower(), {}).get(word.lower(), None)
 
 
 def translate_sentence_json(lexicon, source_lang, target_lang, sentence):
@@ -55,10 +65,37 @@ def translate_sentence_json(lexicon, source_lang, target_lang, sentence):
 
 
 def add_translation_json(lexicon, source_lang, target_lang, source_word, target_word):
+    source_lang = source_lang.lower()
+    target_lang = target_lang.lower()
+    source_word = source_word.lower()
+    target_word = target_word.lower()
+
     if source_word in lexicon.setdefault(source_lang, {}).setdefault(target_lang, {}):
-        print(f"Translation for {source_word} already exists!")
+        print(f"Translation for '{source_word}' already exists!\n")
         return
+
+    if source_lang == "georgian" and not is_georgian_word(source_word):
+        print(f"Error: The source word '{source_word}' is not a valid Georgian word.\n")
+        return
+    elif source_lang == "english" and not is_english_word(source_word):
+        print(f"Error: The source word '{source_word}' is not a valid English word.\n")
+        return
+    elif source_lang == "french" and not is_french_word(source_word):
+        print(f"Error: The source word '{source_word}' is not a valid French word.\n")
+        return
+
+    if target_lang == "georgian" and not is_georgian_word(target_word):
+        print(f"Error: The target word '{target_word}' is not a valid Georgian word.\n")
+        return
+    elif target_lang == "english" and not is_english_word(target_word):
+        print(f"Error: The target word '{target_word}' is not a valid English word.\n")
+        return
+    elif target_lang == "french" and not is_french_word(target_word):
+        print(f"Error: The target word '{target_word}' is not a valid French word.\n")
+        return
+
     lexicon[source_lang][target_lang][source_word] = target_word
+    print(f"Translation for '{source_word}' added successfully!\n")
 
 
 def select_language():
@@ -77,4 +114,4 @@ def select_language():
         }
         if choice in languages:
             return languages[choice]
-        print("Invalid choice! Please enter a number between 1 and 4.")
+        print("Invalid choice! Please enter a number between 1 and 4.\n")

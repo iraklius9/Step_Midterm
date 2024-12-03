@@ -1,0 +1,29 @@
+equator, A geographical line dividing the Earth into the Northern and Southern Hemispheres
+pi, A mathematical constant representing the ratio of a circle's circumference to its diameter
+algebra, A branch of mathematics dealing with symbols and their manipulation
+pyramid, A large, ancient structure with a square base and four triangular faces
+volcano, A mountain with a crater that can erupt with lava, ash, and gases
+alexander the great, A historical figure who created one of the largest empires in history
+longitude, The angular distance of a place east or west of the prime meridian
+latitude, The angular distance of a place north or south of the equator
+newton, A physicist known for the laws of motion and the law of universal gravitation
+mona lisa, A famous painting by Leonardo da Vinci, known for its mysterious smile
+rome, The capital of Italy, once the center of the Roman Empire
+renaissance, A period of cultural rebirth in Europe between the 14th and 17th centuries
+eiffel tower, An iron lattice tower in Paris, named after the engineer Gustave Eiffel
+calculus, A branch of mathematics dealing with rates of change and the accumulation of quantities
+giza, The location of the Great Pyramid of Giza, one of the Seven Wonders of the Ancient World
+isaac newton, An English mathematician and physicist who formulated the laws of motion and gravity
+chichen itza, A large Mayan archaeological site located in Mexico, known for its pyramid
+sumerians, An ancient civilization from Mesopotamia, often considered the first civilization
+turing machine, A theoretical computing machine invented by Alan Turing, used to model computation
+apollo 11, The space mission that landed the first humans on the moon in 1969
+gandhi, An Indian leader known for his philosophy of nonviolent resistance against British rule
+abacus, An ancient tool used for counting and performing arithmetic calculations
+1984, A dystopian novel by George Orwell, known for its portrayal of a totalitarian society
+1921, The year that Albert Einstein was awarded the Nobel Prize in Physics
+1000, The approximate number of years in a millennium
+2020, The year that the COVID-19 pandemic began
+jupiter, The largest planet in the solar system, known for its Great Red Spot
+1939, The year that World War II began
+1945, The year that World War II ended

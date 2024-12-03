@@ -3,7 +3,7 @@ from book import *
 
 def main():
     manager = BookManager()
-    manager.load_books("books.txt")
+    manager.load_books("books.csv")
 
     while True:
         print("\nBook Manager")
@@ -14,7 +14,7 @@ def main():
         print("5. Update Book")
         print("6. Save and Exit")
 
-        choice = input("Enter your choice: ")
+        choice = input("\nEnter your choice: ")
 
         if choice == "1":
             title = input("Enter the book title: ").strip()
@@ -30,7 +30,7 @@ def main():
                 print("Author cannot be empty.")
                 continue
 
-            year = get_valid_year("Enter the year of publication: ")
+            year = get_valid_year()
             manager.add_book(Book(title, author, year))
             print("Book added successfully.")
 
@@ -68,13 +68,12 @@ def main():
                 print("Author cannot be empty.")
                 continue
 
-            new_year = get_valid_year("Enter the new year of publication: ")
+            new_year = get_valid_year()
             manager.update_book(title, new_title, new_author, new_year)
             print("Book updated successfully.")
 
         elif choice == "6":
-            manager.save_books("books.txt")
-            print("Books saved. Exiting the program.")
+            manager.save_books("books.csv")
             break
 
         else:
