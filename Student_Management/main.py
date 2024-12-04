@@ -16,11 +16,10 @@ def main():
         if choice == "1":
             try:
                 name = input("\nEnter student's name: ").strip()
-                roll_number = int(input("Enter roll number: "))
                 grade = input("Enter grade: ").strip()
                 if not name or not grade:
                     raise ValueError("Name and grade cannot be empty.")
-                student = Student(name, roll_number, grade)
+                student = Student(name, grade)
                 student.add_student(students)
             except ValueError as e:
                 print(f"\nInvalid input: {e}\n")
@@ -54,8 +53,17 @@ def main():
                 print("\nRoll number must be an integer.\n")
 
         elif choice == "5":
-            print("\nAll Students:")
-            Student.display_all(students)
+            try:
+                if not students:
+                    print("\nNo students found.\n")
+                else:
+                    print("\nAll Students:")
+                    Student.display_all(students)
+            except AttributeError as e:
+                print(
+                    f"\nError: {e}. The 'display_all' method might not be defined correctly in the 'Student' class.\n")
+            except Exception as e:
+                print(f"\nAn unexpected error occurred: {e}\n")
 
         elif choice == "6":
             print("\nExiting the program.\n")

@@ -5,10 +5,10 @@ import os
 class Student:
     data_file = "students.json"
 
-    def __init__(self, name, roll_number, grade):
+    def __init__(self, name, grade):
         self.name = name
-        self.roll_number = roll_number
         self.grade = grade
+        self.roll_number = self.generate_roll_number()
 
     @staticmethod
     def load_data():
@@ -22,6 +22,15 @@ class Student:
         with open(Student.data_file, "w") as file:
             json.dump(data, file, indent=4)
 
+    @staticmethod
+    def generate_roll_number():
+        students = Student.load_data()
+        if students:
+            max_roll_number = max(student["roll_number"] for student in students)
+        else:
+            max_roll_number = 0
+        return max_roll_number + 1
+
     def add_student(self, students):
         if any(student["roll_number"] == self.roll_number for student in students):
             print(f"\nError: A student with roll number {self.roll_number} already exists.\n")
@@ -33,7 +42,7 @@ class Student:
             "grade": self.grade
         })
         Student.save_data(students)
-        print(f"\nStudent {self.name} added successfully.\n")
+        print(f"\nStudent {self.name} added successfully with roll number {self.roll_number}.\n")
 
     @staticmethod
     def search_student(roll_number, students):
@@ -54,12 +63,13 @@ class Student:
 
     @staticmethod
     def delete_student(roll_number, students):
-        updated_students = [student for student in students if student["roll_number"] != roll_number]
-        if len(students) == len(updated_students):
-            print(f"\nStudent with roll number {roll_number} not found.\n")
-        else:
-            Student.save_data(updated_students)
-            print(f"\nStudent with roll number {roll_number} deleted successfully.\n")
+        for student in students:
+            if student["roll_number"] == roll_number:
+                students.remove(student)
+                Student.save_data(students)
+                print(f"\nStudent with roll number {roll_number} deleted successfully.\n")
+                return
+        print(f"\nStudent with roll number {roll_number} not found.\n")
 
     @staticmethod
     def display_all(students):
@@ -71,4 +81,3 @@ class Student:
                 print(
                     f"Name: {student['name']:<8} Roll Number: {student['roll_number']:<5} Grade: {student['grade']:<5}")
             print()
-

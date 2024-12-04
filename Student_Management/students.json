@@ -10,18 +10,18 @@
         "grade": "B"
     },
     {
-        "name": "mari",
-        "roll_number": 3,
-        "grade": "C"
-    },
-    {
         "name": "nino",
         "roll_number": 4,
         "grade": "D"
     },
     {
-        "name": "nika",
-        "roll_number": 5,
-        "grade": "F"
+        "name": "buba",
+        "roll_number": 6,
+        "grade": "A"
+    },
+    {
+        "name": "koko",
+        "roll_number": 7,
+        "grade": "C"
     }
 ]
